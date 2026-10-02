@@ -178,7 +178,11 @@ impl Color {
     /// Format the color as a HSL-representation string (`hsla(123, 50.3%, 80.1%, 0.4)`). If the
     /// alpha channel is `1.0`, the simplified `hsl()` format will be used instead.
     pub fn to_hsl_string(&self, format: Format) -> String {
-        let space = if format == Format::Braced || format == Format::Spaces { " " } else { "" };
+        let space = if format == Format::Braced || format == Format::Spaces {
+            " "
+        } else {
+            ""
+        };
         let (a_prefix, a) = if self.alpha == 1.0 {
             ("", "".to_string())
         } else {
@@ -202,7 +206,7 @@ impl Color {
                     l = 100.0 * self.lightness,
                     a = a,
                 )
-            },
+            }
             Format::Spaces | Format::NoSpaces => {
                 format!(
                     "hsl{a_prefix}({h:.0},{space}{s:.1}%,{space}{l:.1}%{a})",
@@ -213,7 +217,7 @@ impl Color {
                     l = 100.0 * self.lightness,
                     a = a,
                 )
-            },
+            }
         }
     }
 
@@ -228,7 +232,11 @@ impl Color {
     /// alpha channel is `1.0`, the simplified `hsv()` format will be used instead.
     pub fn to_hsv_string(&self, format: Format) -> String {
         let hsv = HSVA::from(self);
-        let space = if format == Format::Braced || format == Format::Spaces { " " } else { "" };
+        let space = if format == Format::Braced || format == Format::Spaces {
+            " "
+        } else {
+            ""
+        };
         let (a_prefix, a) = if hsv.alpha == 1.0 {
             ("", "".to_string())
         } else {
@@ -252,7 +260,7 @@ impl Color {
                     v = 100.0 * hsv.v,
                     a = a,
                 )
-            },
+            }
             Format::Spaces | Format::NoSpaces => {
                 format!(
                     "hsv{a_prefix}({h:.0},{space}{s:.1}%,{space}{v:.1}%{a})",
@@ -263,7 +271,7 @@ impl Color {
                     v = 100.0 * hsv.v,
                     a = a,
                 )
-            },
+            }
         }
     }
 
@@ -277,7 +285,11 @@ impl Color {
     /// is `1.0`, the simplified `rgb()` format will be used instead.
     pub fn to_rgb_string(&self, format: Format) -> String {
         let rgba = RGBA::<u8>::from(self);
-        let space = if format == Format::Braced || format == Format::Spaces { " " } else { "" };
+        let space = if format == Format::Braced || format == Format::Spaces {
+            " "
+        } else {
+            ""
+        };
         let (a_prefix, a) = if self.alpha == 1.0 {
             ("", "".to_string())
         } else {
@@ -301,7 +313,7 @@ impl Color {
                     b = rgba.b,
                     a = a,
                 )
-            },
+            }
             Format::Spaces | Format::NoSpaces => {
                 format!(
                     "rgb{a_prefix}({r},{space}{g},{space}{b}{a})",
@@ -312,7 +324,7 @@ impl Color {
                     b = rgba.b,
                     a = a,
                 )
-            },
+            }
         }
     }
 
@@ -325,7 +337,11 @@ impl Color {
     /// Format the color as a CMYK-representation string (`cmyk(0, 50, 100, 100)`).
     pub fn to_cmyk_string(&self, format: Format) -> String {
         let cmyk = CMYK::from(self);
-        let space = if format == Format::Braced || format == Format::Spaces { " " } else { "" };
+        let space = if format == Format::Braced || format == Format::Spaces {
+            " "
+        } else {
+            ""
+        };
 
         match format {
             Format::Braced | Format::BracedNoSpaces => {
@@ -337,7 +353,7 @@ impl Color {
                     k = (cmyk.k * 100.0).round(),
                     space = space
                 )
-            },
+            }
             Format::Spaces | Format::NoSpaces => {
                 format!(
                     "cmyk({c},{space}{m},{space}{y},{space}{k})",
@@ -347,7 +363,7 @@ impl Color {
                     k = (cmyk.k * 100.0).round(),
                     space = space
                 )
-            },
+            }
         }
     }
 
@@ -355,7 +371,11 @@ impl Color {
     /// is `1.0`, the simplified `rgb()` format will be used instead.
     pub fn to_rgb_float_string(&self, format: Format) -> String {
         let rgba = RGBA::<f64>::from(self);
-        let space = if format == Format::Braced || format == Format::Spaces { " " } else { "" };
+        let space = if format == Format::Braced || format == Format::Spaces {
+            " "
+        } else {
+            ""
+        };
         let (a_prefix, a) = if self.alpha == 1.0 {
             ("", "".to_string())
         } else {
@@ -379,7 +399,7 @@ impl Color {
                     b = rgba.b,
                     a = a,
                 )
-            },
+            }
             Format::Spaces | Format::NoSpaces => {
                 format!(
                     "rgb{a_prefix}({r:.3},{space}{g:.3},{space}{b:.3}{a})",
@@ -390,7 +410,7 @@ impl Color {
                     b = rgba.b,
                     a = a,
                 )
-            },
+            }
         }
     }
 
@@ -462,7 +482,11 @@ impl Color {
     /// is `1.0`, it won't be included in the output.
     pub fn to_lab_string(&self, format: Format) -> String {
         let lab = Lab::from(self);
-        let space = if format == Format::Braced || format == Format::Spaces { " " } else { "" };
+        let space = if format == Format::Braced || format == Format::Spaces {
+            " "
+        } else {
+            ""
+        };
         let alpha = if self.alpha == 1.0 {
             "".to_string()
         } else {
@@ -483,7 +507,7 @@ impl Color {
                     space = space,
                     alpha = alpha
                 )
-            },
+            }
             Format::Spaces | Format::NoSpaces => {
                 format!(
                     "Lab({l:.0},{space}{a:.0},{space}{b:.0}{alpha})",
@@ -493,7 +517,7 @@ impl Color {
                     space = space,
                     alpha = alpha
                 )
-            },
+            }
         }
     }
 
@@ -508,7 +532,11 @@ impl Color {
     /// If the alpha channel is `1.0`, it won't be included in the output.
     pub fn to_oklab_string(&self, format: Format) -> String {
         let oklab = OkLab::from(self);
-        let space = if format == Format::Braced || format == Format::Spaces { " " } else { "" };
+        let space = if format == Format::Braced || format == Format::Spaces {
+            " "
+        } else {
+            ""
+        };
         let alpha = if self.alpha == 1.0 {
             "".to_string()
         } else {
@@ -529,7 +557,7 @@ impl Color {
                     space = space,
                     alpha = alpha
                 )
-            },
+            }
             Format::Spaces | Format::NoSpaces => {
                 format!(
                     "OkLab({l:.4},{space}{a:.4},{space}{b:.4}{alpha})",
@@ -539,7 +567,7 @@ impl Color {
                     space = space,
                     alpha = alpha
                 )
-            },
+            }
         }
     }
 
@@ -554,7 +582,11 @@ impl Color {
     /// is `1.0`, it won't be included in the output.
     pub fn to_lch_string(&self, format: Format) -> String {
         let lch = LCh::from(self);
-        let space = if format == Format::Braced || format == Format::Spaces { " " } else { "" };
+        let space = if format == Format::Braced || format == Format::Spaces {
+            " "
+        } else {
+            ""
+        };
         let alpha = if self.alpha == 1.0 {
             "".to_string()
         } else {
@@ -575,7 +607,7 @@ impl Color {
                     space = space,
                     alpha = alpha
                 )
-            },
+            }
             Format::Spaces | Format::NoSpaces => {
                 format!(
                     "LCh({l:.0},{space}{c:.0},{space}{h:.0}{alpha})",
@@ -585,7 +617,7 @@ impl Color {
                     space = space,
                     alpha = alpha
                 )
-            },
+            }
         }
     }
 
@@ -600,7 +632,11 @@ impl Color {
     /// If the alpha channel is `1.0`, it won't be included in the output.
     pub fn to_oklch_string(&self, format: Format) -> String {
         let oklch = OkLCh::from(self);
-        let space = if format == Format::Braced || format == Format::Spaces { " " } else { "" };
+        let space = if format == Format::Braced || format == Format::Spaces {
+            " "
+        } else {
+            ""
+        };
         let alpha = if self.alpha == 1.0 {
             "".to_string()
         } else {
@@ -621,7 +657,7 @@ impl Color {
                     space = space,
                     alpha = alpha
                 )
-            },
+            }
             Format::Spaces | Format::NoSpaces => {
                 format!(
                     "OkLCh({l:.4},{space}{c:.4},{space}{h:.4}{alpha})",
@@ -631,7 +667,7 @@ impl Color {
                     space = space,
                     alpha = alpha
                 )
-            },
+            }
         }
     }
 

@@ -19,10 +19,13 @@ impl ColorCommand for FormatCommand {
             .expect("required argument");
         let format_type = format_type.to_lowercase();
 
-        let braced: bool = *matches.get_one("braced")
-            .unwrap_or(&false);
+        let braced: bool = *matches.get_one("braced").unwrap_or(&false);
 
-        let output_format = if braced { Format::Braced } else { Format::Spaces };
+        let output_format = if braced {
+            Format::Braced
+        } else {
+            Format::Spaces
+        };
 
         let replace_escape = |code: &str| code.replace('\x1b', "\\x1b");
 
